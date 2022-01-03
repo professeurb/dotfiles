@@ -4,3 +4,6 @@
 neoneo/
 treesitter/
 
+fish/completions/
+fish/functions/
+
