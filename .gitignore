@@ -4,6 +4,6 @@
 neoneo/
 treesitter/
 
-fish/completions/
-fish/functions/
-
+fish/completions/*
+fish/functions/*
+fish/fish_variables
