@@ -1,0 +1,7 @@
+exp-grouping = preserve
+if-then-else = fit-or-vertical
+let-and = sparse
+let-binding-spacing = double-semicolon
+margin = 60
+wrap-comments = false
+break-cases = toplevel
