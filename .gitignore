@@ -4,6 +4,8 @@
 neoneo/
 treesitter/
 
+nvim/plugin/
+
 fish/completions/*
-fish/functions/*
+fish/functions
 fish/fish_variables

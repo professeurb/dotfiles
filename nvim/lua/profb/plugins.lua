@@ -47,14 +47,11 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
 	-- https://github.com/windwp/nvim-autopairs
-	-- use({
-	--	"windwp/nvim-autopairs",
-	--	config = function()
-	--		require("nvim-autopairs").setup({
-	--			check_ts = true,
-	--		})
-	--	end,
-	-- })
+	use({
+		"windwp/nvim-autopairs",
+	})
+
+	use("numToStr/Comment.nvim")
 
 	-- https://github.com/nvim-lualine/lualine.nvim
 	use({
@@ -96,6 +93,9 @@ return packer.startup(function(use)
 	-- use "arcticicestudio/nord-vim"
 	use("rebelot/kanagawa.nvim")
 	use("EdenEast/nightfox.nvim")
+	use("folke/tokyonight.nvim")
+	use("sainnhe/everforest")
+	use("savq/melange")
 
 	-- Telescope
 	use({
@@ -138,6 +138,8 @@ return packer.startup(function(use)
 			})
 		end,
 	})
+
+	use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
 
 	-- Completion
 	use({
@@ -218,6 +220,7 @@ return packer.startup(function(use)
 	--	use({
 	--		"nvim-treesitter/playground",
 	--	})
+	-- use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Git
 	use({
@@ -225,13 +228,48 @@ return packer.startup(function(use)
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
-		config = function()
-			require("gitsigns").setup()
-		end,
 	})
 	-- use({ "f-person/git-blame.nvim" })
 
 	use("akinsho/toggleterm.nvim")
+
+	-- https://github.com/folke/zen-mode.nvim
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
+
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
+
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({
+dimming = {alpha = 0.25, color = {"Normal", "#ffffff"}, inactive = true},
+    context = 10,
+    treesitter = true,
+    expand = {"function", "method", "table", "if_statement"}
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
 
 	-- TeX
 	use("lervag/vimtex")
