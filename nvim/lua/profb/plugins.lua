@@ -59,15 +59,15 @@ return packer.startup(function(use)
 		requires = {
 			"kyazdani42/nvim-web-devicons",
 			opt = true,
-			config = function()
-				require("lualine").setup({
-					options = {
-						-- section_separators = { left = '?', right = '?'},
-						component_separators = "",
-					},
-				})
-			end,
 		},
+		config = function()
+			require("lualine").setup({
+				options = {
+					-- section_separators = { left = '?', right = '?'},
+					component_separators = "",
+				},
+			})
+		end,
 	})
 
 	-- https://github.com/lukas-reineke/indent-blankline.nvim
@@ -163,48 +163,7 @@ return packer.startup(function(use)
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		opt = true,
-		event = "UIEnter",
 		run = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				-- one of "all", "maintained", or a list of languages
-				ensure_installed = "maintained",
-				sync_install = false,
-				highlight = {
-					enable = true, -- false will disable the whole extension
-					-- disable = { "c", "rust" },  -- list of language that will be disabled
-				},
-				rainbow = {
-					enable = true,
-				},
-				autopairs = {
-					enable = true,
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<leader>+",
-						node_incremental = "<leader>=",
-						node_decremental = "<leader>-",
-						scope_incremental = "<leader>}",
-						scope_decremental = "<leader>{",
-					},
-				},
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-						},
-					},
-				},
-			})
-		end,
 	})
 	use({
 		"windwp/nvim-ts-autotag",
@@ -217,10 +176,10 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})
-	--	use({
-	--		"nvim-treesitter/playground",
-	--	})
-	-- use("JoosepAlviste/nvim-ts-context-commentstring")
+	use({
+		"nvim-treesitter/playground",
+	})
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Git
 	use({
@@ -245,34 +204,52 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({
-		"folke/twilight.nvim",
-		config = function()
-			require("twilight").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
-		end,
-	})
-
-	use({
-		"folke/twilight.nvim",
-		config = function()
-			require("twilight").setup({
-dimming = {alpha = 0.25, color = {"Normal", "#ffffff"}, inactive = true},
-    context = 10,
-    treesitter = true,
-    expand = {"function", "method", "table", "if_statement"}
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
-		end,
-	})
-
+	-- use({
+	-- 	"folke/twilight.nvim",
+	-- 	config = function()
+	-- 		require("twilight").setup({
+	-- 			-- your configuration comes here
+	-- 			-- or leave it empty to use the default settings
+	-- 			-- refer to the configuration section below
+	-- 		})
+	-- 	end,
+	-- })
+	--
 	-- TeX
 	use("lervag/vimtex")
+
+	-- Kitty Configuration
+	use("fladson/vim-kitty")
+
+	-- OrgMode
+	use({
+		"nvim-orgmode/orgmode",
+		config = function()
+			require("orgmode").setup({})
+		end,
+	})
+
+	-- Neorg
+	use({
+		"nvim-neorg/neorg",
+		config = function()
+			require("neorg").setup({
+				-- Tell Neorg what modules to load
+				load = {
+					["core.defaults"] = {}, -- Load all the default modules
+					["core.norg.concealer"] = {}, -- Allows for use of icons
+					["core.norg.dirman"] = { -- Manage your directories with Neorg
+						config = {
+							workspaces = {
+								my_workspace = "~/Dropbox/neorg",
+							},
+						},
+					},
+				},
+			})
+		end,
+		requires = "nvim-lua/plenary.nvim",
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

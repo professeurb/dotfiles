@@ -139,6 +139,7 @@ which_key.register({
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 		f = { "<cmd>Telescope find_files<cr>", "Files" },
+    g = { "<cmd>Telescope live_grep<cr>", "Grep" }
 	},
 	t = {
 		name = "Terminal",
