@@ -9,3 +9,5 @@ eval (opam env)
 
 # Created by `userpath` on 2021-01-18 15:00:36
 fish_add_path /Users/olivier/.local/bin
+
+# function fish_vi_cursor; end

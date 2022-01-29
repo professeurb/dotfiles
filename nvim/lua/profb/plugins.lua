@@ -96,6 +96,10 @@ return packer.startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("sainnhe/everforest")
 	use("savq/melange")
+	use("ayu-theme/ayu-vim")
+	use("rakr/vim-one")
+	use("mhartington/oceanic-next")
+	use("numToStr/Sakura.nvim")
 
 	-- Telescope
 	use({
@@ -154,6 +158,20 @@ return packer.startup(function(use)
 		},
 	})
 
+	use({
+		"gelguy/wilder.nvim",
+		config = function()
+			require("wilder").setup({
+				modes = { ":", "/", "?" },
+				next_key = "<Tab>",
+				previous_key = "<S-Tab>",
+				accept_key = "<Down>",
+				reject_key = "<Up>",
+				fuzzy = 1,
+			})
+		end,
+	})
+
 	-- Snippets
 	use({
 		"L3MON4D3/LuaSnip",
@@ -179,7 +197,7 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/playground",
 	})
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+	-- use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Git
 	use({
@@ -221,12 +239,15 @@ return packer.startup(function(use)
 	-- Kitty Configuration
 	use("fladson/vim-kitty")
 
+	-- Markdown
+	use({ "ellisonleao/glow.nvim" })
+
+	-- CSV
+	use({ "mechatroner/rainbow_csv" })
+
 	-- OrgMode
 	use({
 		"nvim-orgmode/orgmode",
-		config = function()
-			require("orgmode").setup({})
-		end,
 	})
 
 	-- Neorg

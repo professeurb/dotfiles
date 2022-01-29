@@ -1,7 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
 
 local cmp = require("cmp")
-local lspkind = require("lspkind")
+-- local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -69,7 +69,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			select = false,
 		}),
 		["<Tab>"] = function(fallback)
 			if cmp.visible() then
@@ -95,7 +95,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-    { name = "buffer"}
+		{ name = "buffer" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
