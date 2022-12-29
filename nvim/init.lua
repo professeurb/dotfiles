@@ -1,31 +1,40 @@
--- Inspiration
--- https://github.com/LunarVim/Neovim-from-scratch
--- https://github.com/hackorum/nfs/tree/master/lua
+-- https://github.com/fadelpamungkas/dotfiles
 
-require("profb.options")
-require("profb.plugins")
-require("profb.mappings")
-require("profb.lsp")
-require("profb.cmp")
-require("profb.telescope")
-require("profb.toggleterm")
-require("profb.autopairs")
-require("profb.gitsigns")
-require("profb.comments")
-require("profb.nvimtree")
-require("profb.orgmode")
--- require("profb.neorg")
-require("profb.whichkey")
-require("profb.treesitter")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
 
-vim.cmd([[ colorscheme nordfox ]])
+require('profb.mappings')
+require('profb.options')
 
-vim.cmd([[
-let g:vimtex_compiler_engine = 'lualatex'
-]])
-
-vim.cmd([[
-set foldlevel=20
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]])
+require("lazy").setup("profb.plugins", {
+ defaults = { lazy = true },
+ install = { colorscheme = { "habamax" } },
+ checker = { enabled = true },
+ change_detection = {
+  notify = false,
+ },
+ performance = {
+  rtp = {
+   disabled_plugins = {
+    "gzip",
+    "matchit",
+    "matchparen",
+    "netrwPlugin",
+    "tarPlugin",
+    "tohtml",
+    "tutor",
+    "zipPlugin",
+   },
+  },
+ },
+})
