@@ -2,9 +2,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/playground",
-      "windwp/nvim-ts-autotag",
-      "p00f/nvim-ts-rainbow", },
+      "RRethy/nvim-treesitter-textsubjects",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+    },
     build = ":TSUpdate",
     event = "BufReadPost",
     config = function()
@@ -26,20 +27,20 @@ return {
 
       require("nvim-treesitter.configs").setup {
         ensure_installed = "all",
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
-        rainbow = {
+        ignore_install = { "phpdoc", "comment" },
+        highlight = {
           enable = true,
-          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-          max_file_lines = nil, -- Do not enable for files with more than n lines, int
+          disable = {},
+          additional_vim_regex_highlighting = false,
         },
         indent = { enable = true, disable = { "python" } },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = "<C-s>",
+            node_decremental = "<C-bs>",
           },
         },
         textobjects = {
@@ -86,5 +87,3 @@ return {
     end,
   },
 }
-
--- https://www.youtube.com/watch?v=NdVK9JvRZe4

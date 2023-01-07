@@ -39,5 +39,6 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = true
   },
-  { 'ThePrimeagen/vim-be-good', cmd = "VimBeGood" }
+  { 'ThePrimeagen/vim-be-good', cmd = "VimBeGood" },
+  { 'm4xshen/autoclose.nvim', config = true, event = "InsertEnter", }
 }
