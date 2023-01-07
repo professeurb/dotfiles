@@ -1,4 +1,5 @@
 -- https://github.com/fadelpamungkas/dotfiles
+-- https://github.com/ziontee113/lazy-nvim-config
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,24 +18,24 @@ require('profb.mappings')
 require('profb.options')
 
 require("lazy").setup("profb.plugins", {
- defaults = { lazy = true },
- install = { colorscheme = { "habamax" } },
- checker = { enabled = true },
- change_detection = {
-  notify = false,
- },
- performance = {
-  rtp = {
-   disabled_plugins = {
-    "gzip",
-    "matchit",
-    "matchparen",
-    "netrwPlugin",
-    "tarPlugin",
-    "tohtml",
-    "tutor",
-    "zipPlugin",
-   },
+  defaults = { lazy = true },
+  install = { colorscheme = { "habamax" } },
+  checker = { enabled = false },
+  change_detection = {
+    notify = false,
   },
- },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })

@@ -3,11 +3,18 @@ return {
   { "williamboman/mason-lspconfig.nvim", dependencies = "williamboman/mason.nvim",
     config = {
       automatic_installation = true,
+      ensure_installed = {
+        "texlab", "tailwindcss", "ocamllsp", "pylsp", "svelte", "sumneko_lua"
+      }
     }
   },
   { "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    dependencies = { { "folke/neodev.nvim", config = true }, { 'j-hui/fidget.nvim', config = true } },
+    dependencies = {
+      { "folke/neodev.nvim", config = true },
+      { 'j-hui/fidget.nvim', config = true },
+      { "williamboman/mason-lspconfig.nvim" }
+    },
     config = function()
       local lspconfig = require("lspconfig")
       local servers = {
@@ -20,7 +27,19 @@ return {
         ocamllsp = { cmd = { "ocamllsp", "--fallback-read-dot-merlin" } },
         pylsp = {},
         svelte = {},
-        sumneko_lua = {},
+        sumneko_lua = {
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace",
+              },
+            },
+          },
+        },
+        rust_analyzer = {}
       }
 
       for lsp, cfg in pairs(servers) do
