@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<FileZilla3 version="3.60.1" platform="mac">
+	<FtpSessionResumption>
+		<Entry Host="mafreebox.freebox.fr" Port="21">true</Entry>
+		<Entry Host="88.127.215.63" Port="34377">true</Entry>
+	</FtpSessionResumption>
+	<TrustedCerts />
+</FileZilla3>

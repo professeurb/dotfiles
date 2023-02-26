@@ -1,4 +1,4 @@
-return {
+local d = {
   { "williamboman/mason.nvim", cmd = "Mason", config = true },
   { "williamboman/mason-lspconfig.nvim", dependencies = "williamboman/mason.nvim",
     config = {
@@ -7,6 +7,23 @@ return {
         "texlab", "tailwindcss", "ocamllsp", "pylsp", "svelte", "sumneko_lua"
       }
     }
+  },
+  { "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup {
+        debug = false,
+        sources = {
+          null_ls.builtins.formatting.prettier.with {
+            extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+            filetypes = { "astro", "css", "javascript", "djangohtml", "html", "json", "yaml", "markdown", "svelte" },
+          },
+          -- formatting.black.with({ extra_args = { "--fast" } }),
+          -- formatting.stylua,
+          -- diagnostics.flake8
+        },
+      }
+    end
   },
   { "neovim/nvim-lspconfig",
     event = "BufReadPre",
